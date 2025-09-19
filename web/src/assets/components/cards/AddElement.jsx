@@ -20,8 +20,8 @@ const AddElement = () => {
   };
 
   return (
-    <div class='justify-center'>
-      { step === 0 && ( <button onClick={add} class='bg-blue-600 rounded-3xl p-4 hover:bg-blue-500'> AÑADIR ELEMENTO </button> ) }
+    <div className='justify-center'>
+      { step === 0 && ( <button onClick={add} className='bg-blue-600 rounded-3xl p-4 hover:bg-blue-500'> AÑADIR ELEMENTO </button> ) }
 
       { step === 1 && (
         <input 
@@ -30,7 +30,7 @@ const AddElement = () => {
           value={nomb} 
           onChange={ (e) => setNomb(e.target.value) } // se actualiza cada que es escribe
           onKeyDown={ (e) => e.key === 'Enter' && add() } // al tocar ENTER ejecuta la funcion
-          class='bg-blue-800 text-white rounded-3xl p-4'
+          className='bg-blue-800 text-white rounded-3xl p-4'
         />
       ) }
 
@@ -41,15 +41,15 @@ const AddElement = () => {
           value={cant}
           onChange={ (e) => setCant(e.target.value) }
           onKeyDown={ (e) => e.key === "Enter" && add() }
-          class='bg-blue-800 text-white rounded-3xl p-4'
+          className='bg-blue-800 text-white rounded-3xl p-4'
         />
       ) }
       
-      <div class='my-4'>
+      <div className='my-4'>
         { items.map( (item,i) => (
-          <div key={i} class='bg-gray-400 font-black rounded-4xl p-4 my-2'>
+          <div key={i} className='bg-gray-400 font-black rounded-4xl p-4 my-2'>
             <span> {item.nomb} </span>
-            <span class='font-semibold'> X {item.cant} </span>
+            <span className='font-semibold'> X {item.cant} </span>
           </div>
         ) ) }
       </div>
