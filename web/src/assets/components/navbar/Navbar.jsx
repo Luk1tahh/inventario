@@ -1,18 +1,19 @@
 import React from 'react'
 import logo from '../../img/logo.png'
-import Nav from './Nav'
-import './navbar.css'
 
 const Navbar = () => {
+  const list = ['Apartado1', 'Apartado2', 'Apartado3' ]
   return (
-    <div class='bg-blue-950'>
+    <div className='bg-blue-950 px-2'>
       
-      <div class='flex justify-around'>
-        <img src={logo} class='w-40' />
+      <div className='w-30'>
+        <img src={logo}  />
       </div>
 
       <div>
-        <Nav />
+        <ul class='flex justify-around'>
+          { list.map( (item, index) => <li key={index} class='text-white p-4 text-2xl'> {item} </li> ) }
+        </ul>
       </div>
 
     </div>

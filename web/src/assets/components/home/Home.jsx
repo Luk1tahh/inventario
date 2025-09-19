@@ -1,11 +1,12 @@
 import React from 'react'
-import Agregar from '../cards/Agregar'
-import './home.css'
+import AddElement from '../cards/AddElement'
 
 const Home = () => {
   return (
-    <div class='bg-black p-96'>
-      <Agregar />
+    <div class='bg-black h-dvw'>
+      <div className='p-6'>
+          <AddElement />
+      </div>
     </div>
   )
 }

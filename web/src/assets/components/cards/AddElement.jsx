@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import './agregar.css'
 
-const Agregar = () => {
+const AddElement = () => {
   const [step, setStep] = useState(0) // 0: nada, 1: nombre, 2:cantidad
   const [nomb, setNomb] = useState("")
   const [cant, setCant] = useState("")
@@ -58,4 +57,4 @@ const Agregar = () => {
   )
 }
 
-export default Agregar
+export default AddElement
