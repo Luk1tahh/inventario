@@ -45,7 +45,7 @@ const AddElement = () => {
         />
       ) }
       
-      <div className='my-4'>
+      <div className='my-4 w-max'>
         { items.map( (item,i) => (
           <div key={i} className='bg-gray-400 font-black rounded-4xl p-4 my-2'>
             <span> {item.nomb} </span>

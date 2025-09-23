@@ -4,7 +4,7 @@ import AddElement from '../cards/AddElement'
 
 const Home = () => {
   return (
-    <div className='bg-black h-dvw'>
+    <div className='bg-black min-h-screen'>
       <div className='bg-amber-300 p-6'> 
         <AddSection />
       </div>
