@@ -1,16 +1,14 @@
 import React from 'react'
 import AddSection from '../cards/AddSection'
-import AddElement from '../cards/AddElement'
 
 const Home = () => {
   return (
     <div className='bg-black min-h-screen'>
-      <div className='bg-amber-300 p-6'> 
+
+      <div className='bg-amber-300 flex justify-center p-6'> 
         <AddSection />
       </div>
-      <div className='bg-red-500 p-6'>
-          <AddElement />
-      </div>
+      
     </div>
   )
 }
