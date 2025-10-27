@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const AddElement = () => {
+const AddElement = ( {onElementAdded} ) => {
   const [step, setStep] = useState(0) // 0: nada, 1: nombre, 2:cantidad
   const [nomb, setNomb] = useState("")
   const [cant, setCant] = useState("")
@@ -11,7 +11,8 @@ const AddElement = () => {
       setStep(1) // al clickear muestra "Nombre..." 
     } else if (step === 1 && nomb.trim() !== "") { // asegura que no sea espacio vacio
       setStep(2) 
-    } else if (step === 2 && nomb.trim() !== "") { 
+    } else if (step === 2 && cant !== "") { 
+      onElementAdded( { nomb, cant } ) // avisa al padre que se agregó 
       setItems( [...items, {nomb, cant} ] ) //agrega un item al array
       setNomb("") // limpia el apartado de nombre
       setCant("") // limpia el apartado de cantidad
