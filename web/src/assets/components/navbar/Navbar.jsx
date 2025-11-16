@@ -6,8 +6,10 @@ const Navbar = () => {
   return (
     <div className='bg-blue-950 px-2'>
       
-      <div className='w-30'>
-        <img src={logo}  />
+      <div className='flex justify-center'>
+        <div className='w-30'>
+          <img src={logo} />
+        </div>
       </div>
 
       <div>

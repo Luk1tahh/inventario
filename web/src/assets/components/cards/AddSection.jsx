@@ -9,7 +9,7 @@ const AddSection = () => {
   const add = () => {
     if (step === 0){
       setStep(1)
-    } else if (step === 1 && nom.trim() !== '') {
+    } else if (step === 1 && nom.trim() !== '') { // asegura que no haya espacio vacio
       setStep(2)
     } }
 
