@@ -9,7 +9,7 @@ const SectionList = ({
 
   return (
     <div className="mt-8">
-      <h2 className="text-2xl mb-4">Secciones creadas</h2>
+      {/* <h2 className="text-2xl mb-4">Secciones creadas</h2> */}
 
       {sections.map( (sec, index) => (
         <SectionCard 

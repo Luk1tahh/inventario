@@ -22,7 +22,7 @@ const SectionCard = ({
           <li key={i} className="flex items-center gap-3">
             {item}
 
-            <button className="bg-red-600 px-2 py-1 rounded text-sm" onClick={ () => removeItemFromSection(index, i) } > borrar </button>
+            <button className="bg-red-600 px-2 py-1 rounded text-sm" onClick={ () => removeItemFromSection(index, i) } > Borrar </button>
           </li>
         ) ) }
       </ul>

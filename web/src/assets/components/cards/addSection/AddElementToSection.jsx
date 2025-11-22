@@ -1,12 +1,12 @@
 import { useState } from 'react'
 
-const AddElementToSection = ({ onAdd }) => {
+const AddElementToSection = ( { onAdd } ) => {
   const [input, setInput] = useState("")
 
   return (
     <div className="mt-3">
       <input 
-        className="text-black p-1 rounded"
+        className="p-1 rounded"
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />

@@ -64,7 +64,7 @@ const InventoryManager = () => {
           setCurrentSectionName={setCurrentSectionName}
           setCurrentStep={setCurrentStep}
         />
-      )}
+      ) }
 
       {currentStep === 2 && (
         <AddItemsToSection
@@ -75,7 +75,7 @@ const InventoryManager = () => {
           currentItems={currentItems}
           finishSection={finishSection}
         />
-      )}
+      ) }
 
       <SectionList
         sections={sections}

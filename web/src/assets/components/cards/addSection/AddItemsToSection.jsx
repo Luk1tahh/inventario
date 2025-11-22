@@ -1,4 +1,4 @@
-const AddItemsToSection = ({
+const AddItemsToSection = ( {
   currentSectionName,
   currentItemInput,
   setCurrentItemInput,
