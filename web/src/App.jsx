@@ -1,14 +1,12 @@
-import Navbar from './assets/components/navbar/Navbar'
-import Home from './assets/components/home/Home'
-import Footer from './assets/components/footer/Footer'
 import './App.css'
+import Home from './components/home/Home'
+import Navbar from './components/navbar/Navbar'
 
 function App() {
   return (
     <>
-      <Navbar />
-      <Home />
-      <Footer />
+    <Navbar />
+    <Home />
     </>
   )
 }
