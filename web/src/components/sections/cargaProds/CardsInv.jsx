@@ -5,7 +5,7 @@ const CardsInv = ( { sec, productos } ) => {
   if (productos.length === 0) return null
 
   return (
-    <div className='p-10 border-2 border-blue-300 rounded-2xl'>
+    <div className='p-10 border-4 border-blue-300 rounded-3xl'>
       
       <div className='pb-8 text-center'>
         <span className='font-extrabold tracking-wide'> {sec} </span>
