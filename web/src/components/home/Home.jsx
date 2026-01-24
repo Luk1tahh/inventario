@@ -7,10 +7,10 @@ import NewSectionFB from '../sections/cargaSection/NewSectionFB'
 const Home = () => {
   return (
     <div className='min-h-screen'>
-      {/* <CargaProds /> */}
-      {/* <NewSection /> */}
-      <NewSectionFB />
-      {/* <NewProd /> */}
+      <div className='flex justify-around'>
+        <NewSectionFB />
+        <NewProd />
+      </div>
     </div>
   )
 }
