@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { collection, addDoc, getDocs } from 'firebase/firestore'
 import { db } from '../../../firebaseConfig'
+import CardProd from './CardProd'
 
 const NewProd = () => {
+  const [step, setStep] = useState(0)
   const [nom, setNom] = useState('')
   const [cant, setCant] = useState('')
   const [prods, setProds] = useState([])
@@ -20,14 +22,19 @@ const NewProd = () => {
     fetchProds() 
   }, [] )
 
+  const nextStep = () => {
+    setStep( prev => prev + 1)
+  }
+
   const addProd = async () => {
     if ( nom.trim() === '' ) return
     try {
-      const newProd = { nombre: nom, fecha: new Date() }
+      const newProd = { nombre: nom, cantidad: cant, fecha: new Date() }
       const docRef = await addDoc( collection(db,'productos'), newProd )
 
       setProds( prev => [...prev, { ...newProd, id: docRef.id } ] )
       setNom('')
+      setCant('')
     } catch(error) {
       console.error('Error:', error)
     }
@@ -46,20 +53,39 @@ const NewProd = () => {
   }
 
   return (
-    <div className='p-4 text-white'>
-      <input 
-        value={nom} 
-        placeholder='Nuevo producto...' 
-        onChange={ (e) => setNom(e.target.value) }
-        className='text-black p-2'
-      />
+    <div>
+      {step === 0 &&(
+        <div> 
+          <input 
+            value={nom} 
+            placeholder='Nuevo producto...' 
+            onChange={ (e) => setNom(e.target.value) }
+            className={`border-2 outline-none ${nom ? 'border-blue-600 border-3' : 'border-blue-400'} rounded-2xl text-black p-2 mr-2`}
+          />
+        <button onClick={nextStep} className='text-white bg-blue-500 hover:bg-blue-700 rounded-2xl p-3'> Agregar cantidad </button>
+        </div>
+      ) }
+      
+      {step === 1 &&(
+        <div> 
+          <input
+            type='number'
+            value={cant} 
+            placeholder='Cantidad...' 
+            onChange={ (e) => setCant(e.target.value) }
+            className={`border-2 outline-none ${nom ? 'border-blue-600 border-3' : 'border-blue-400'} rounded-2xl text-black p-2 mr-2`}
+          />
+        <button onClick={addProd} className='text-white bg-blue-500 hover:bg-blue-700 rounded-2xl p-3'> Agregar Producto </button>
+        </div>
+      ) }
 
-      <button onClick={addProd} className='bg-green-600 p-2 ml-2'> Agregar </button>
-
-      <ul className='mt-4'>
+      <ul>
         { prods.map( prod => (
-          <li key={prod.id} className='text-black border-b border-gray-600 py-1'>
-            {prod.nombre}
+          <li key={prod.id}>
+            <CardProd 
+              nomProd={prod.nombre}
+              cant={prod.cantidad}
+            />
           </li>
         ) ) }
       </ul>
