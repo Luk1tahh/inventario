@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import sun from '../../assets/img/sunWhite.svg'
-import moon from '../../assets/img/moon.svg'
+import sun from '../../assets/icons/sunWhite.svg'
+import moon from '../../assets/icons/moon.svg'
 
 const Mode = () => {
   const [isDark, setDark] = useState(false)

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'; // 1. Agregamos useEffect
+import React, { useState, useEffect } from 'react';
 import { db } from '../../../firebaseConfig';
-import { collection, addDoc, getDocs } from "firebase/firestore"; // 2. Agregamos getDocs
+import { collection, addDoc, getDocs, deleteDoc, doc } from "firebase/firestore";
 import CardSection from './CardSection';
+import AddSec from './AddSec';
 
 const NewSectionFB = () => {
   const [nom, setNom] = useState('');
@@ -17,7 +18,7 @@ const NewSectionFB = () => {
     setSections(docs);
   };
 
-  // 3. Este efecto corre una sola vez cuando el componente se monta
+  // Este efecto corre una sola vez cuando el componente se monta
   useEffect( () => {
     fetchSections();
   }, [] );
@@ -28,7 +29,7 @@ const NewSectionFB = () => {
       const newSection = { nombre: nom, fecha: new Date() };
       const docRef = await addDoc(collection(db, "secciones"), newSection);
 
-    // Actualizamos la lista local agregando el nuevo
+    // Actualiza la lista local agregando el nuevo
       setSections(prev => [...prev, { ...newSection, id: docRef.id } ] );
       setNom('');
     } catch (error) {
@@ -38,30 +39,29 @@ const NewSectionFB = () => {
 
   const deleteSection = async (id) => {
     try {
-      await deleteDoc( doc( db, 'section', id ) );
+      await deleteDoc( doc( db, 'secciones', id ) );
     
-      setProds( prev => prev.filter( p => p.id !== id ) );
+      setSections( prev => prev.filter( p => p.id !== id ) );
 
-      alert('Producto eliminado');
+      alert('Seccion eliminada');
     } catch (error) {
       console.error('Error al eliminar:', error);
     } }
 
   return(
     <div>
-      <input 
-        value={nom} 
-        placeholder="Nueva sección..."
-        onChange={(e) => setNom(e.target.value)} 
-        className={`border-2 outline-none ${nom ? 'border-blue-600 border-3' : 'border-blue-400'} rounded-2xl text-black p-2 mr-2`} 
+      <AddSec 
+        nom={nom}
+        setNom={setNom}
+        addSec={addSection}
       />
-      <button onClick={addSection} className='text-white bg-blue-500 hover:bg-blue-700 rounded-2xl p-3'> Agregar seccion </button>
+
       {/* <button onClick={ () => eliminarProd(prod.id) } className="bg-red-700 px-2 py-1 ml-4 rounded"> Eliminar </button> */}
 
       <ul>
         { sections.map( sec => (
           <li key={sec.id}>
-            <CardSection nomSec={sec.nombre} />
+            <CardSection nomSec={sec.nombre} elim={ () => deleteSection(sec.id) }/>
           </li>
         ) ) }
       </ul>

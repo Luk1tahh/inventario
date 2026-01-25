@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { collection, addDoc, getDocs } from 'firebase/firestore'
+import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore'
 import { db } from '../../../firebaseConfig'
+import AddNom from './AddNom'
+import AddCant from './AddCant'
 import CardProd from './CardProd'
 
 const NewProd = () => {
@@ -29,12 +31,13 @@ const NewProd = () => {
   const addProd = async () => {
     if ( nom.trim() === '' ) return
     try {
-      const newProd = { nombre: nom, cantidad: cant, fecha: new Date() }
+      const newProd = { nombre: nom, cantidad: Number(cant), fecha: new Date() }
       const docRef = await addDoc( collection(db,'productos'), newProd )
 
       setProds( prev => [...prev, { ...newProd, id: docRef.id } ] )
       setNom('')
       setCant('')
+      setStep(0)
     } catch(error) {
       console.error('Error:', error)
     }
@@ -56,26 +59,21 @@ const NewProd = () => {
     <div>
       {step === 0 &&(
         <div> 
-          <input 
-            value={nom} 
-            placeholder='Nuevo producto...' 
-            onChange={ (e) => setNom(e.target.value) }
-            className={`border-2 outline-none ${nom ? 'border-blue-600 border-3' : 'border-blue-400'} rounded-2xl text-black p-2 mr-2`}
+          <AddNom
+            nom={nom}
+            setNom={setNom}
+            onNext={nextStep}
           />
-        <button onClick={nextStep} className='text-white bg-blue-500 hover:bg-blue-700 rounded-2xl p-3'> Agregar cantidad </button>
         </div>
       ) }
-      
+
       {step === 1 &&(
         <div> 
-          <input
-            type='number'
-            value={cant} 
-            placeholder='Cantidad...' 
-            onChange={ (e) => setCant(e.target.value) }
-            className={`border-2 outline-none ${nom ? 'border-blue-600 border-3' : 'border-blue-400'} rounded-2xl text-black p-2 mr-2`}
+          <AddCant 
+            cant={cant}
+            setCant={setCant}
+            addProd={addProd}
           />
-        <button onClick={addProd} className='text-white bg-blue-500 hover:bg-blue-700 rounded-2xl p-3'> Agregar Producto </button>
         </div>
       ) }
 
@@ -85,6 +83,7 @@ const NewProd = () => {
             <CardProd 
               nomProd={prod.nombre}
               cant={prod.cantidad}
+              elim={ () => deleteProd(prod.id) }
             />
           </li>
         ) ) }
