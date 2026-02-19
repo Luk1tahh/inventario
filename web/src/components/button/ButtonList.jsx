@@ -1,7 +1,7 @@
 import React from 'react'
 import points from '../../assets/icons/moreVerticalBlack.svg'
 
-const ButtonList = ( {icon, edit, elim} ) => {
+const ButtonList = ( {icon, edit, elim, agregar} ) => {
     return (
     <div>
       {/* FONDO DE BOTON */}
@@ -16,6 +16,10 @@ const ButtonList = ( {icon, edit, elim} ) => {
 
           <div className='hover:bg-gray-100 p-3 rounded-2xl'>
             <a onClick={elim} className='cursor-pointer'> Eliminar </a>
+          </div>
+
+          <div className='hover:bg-gray-100 p-3 rounded-2xl'>
+            <a onClick={agregar} className='cursor-pointer'> Agregar a seccion </a>
           </div>
 
         </div>

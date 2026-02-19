@@ -1,6 +1,7 @@
 import React from 'react'
 import NewProd from '../sections/cargaProduc/NewProd'
 import NewSection from '../sections/cargaSection/NewSection'
+import SectionFull from '../sections/secciones/SectionFull'
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
         <NewSection />
         <NewProd />
       </div>
+        <SectionFull />
     </div>
   )
 }

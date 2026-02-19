@@ -24,7 +24,7 @@ export const useProds = () => {
   const addProd = async () => {
     if (nom.trim() === '') return;
     try {
-      const newProd = { nombre: nom, cantidad: Number(cant), fecha: new Date() }
+      const newProd = { nombre: nom, cantidad: Number(cant), fecha: new Date(), prodID: id }
       const docRef = await addDoc(collection(db, 'productos'), newProd)
 
       setProds(prev => [...prev, { ...newProd, id: docRef.id } ] )
@@ -69,12 +69,31 @@ export const useProds = () => {
     setStep(0)
   }
 
+//  ==================== AGREGAR A SECCION ====================
+//  ===========================================================
+  const asigSec = async (prodID, secID) => {
+    if (!prodID || !secID) return
+    
+    try {
+      const prodRef = doc(db, 'productos', prodID)
+      await updateDoc(prodRef, { // se vuelve a subir el producto pero esta vez a la cardGeneral 
+        secID: secID
+      } )
+
+      setProds( prev => prev.map(p => p.id === prodID ? {...p, secID: secID} : p ) )
+      console.log('Vinculado con exito')
+    } catch (error) {
+      console.log('Fallo la vinculacion:', error)
+    }
+  }
+
   return {
     step, nextStep,
     nom, setNom,
     cant, setCant,
     prods,
     addProd, deleteProd, updateProd, prepareEdit,
-    isEditing: !!editID
+    isEditing: !!editID,
+    asigSec
   }
 }

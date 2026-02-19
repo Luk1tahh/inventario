@@ -1,14 +1,20 @@
 import React from 'react';
 import { useProds } from '../../hooks/useProds'; 
+import { useSections } from '../../hooks/useSections';
 import AddNom from './AddNom';
 import AddCant from './AddCant';
 import CardProd from './CardProd';
+import Modal from './Modal';
 
 const NewProd = () => {
   const {
     step, nextStep, nom, setNom, cant, setCant,
-    prods, addProd, deleteProd, updateProd, prepareEdit, isEditing
+    prods, addProd, deleteProd, updateProd, prepareEdit, isEditing, asigSec
   } = useProds()
+
+  const {
+    sections
+  } = useSections()
 
   return (
     <div>
@@ -38,6 +44,11 @@ const NewProd = () => {
               cant={prod.cantidad}
               elim={ () => deleteProd(prod.id) }
               edit={ () => prepareEdit(prod) }
+              agregarSec= { <Modal 
+                producto={prod}
+                seccion={sections}
+                addASec={asigSec}
+              /> }
             />
           </li>
         ) ) }

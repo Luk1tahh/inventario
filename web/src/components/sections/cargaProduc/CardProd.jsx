@@ -2,7 +2,7 @@ import React from 'react'
 import points from '../../../assets/icons/moreVerticalBlack.svg'
 import ButtonList from '../../button/ButtonList'
 
-const CardProd = ( {nomProd, cant, elim, edit} ) => {
+const CardProd = ( {nomProd, cant, elim, edit, agregarSec} ) => {
 return (
     <div className='my-2'>
       {/* FONDO */}
@@ -18,6 +18,7 @@ return (
             icon={points}
             elim={elim}
             edit={edit}
+            addASec={agregarSec}
           />
 
         </div>
